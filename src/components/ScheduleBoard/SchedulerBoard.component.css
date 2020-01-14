@@ -1,0 +1,81 @@
+.scheduler-table {
+    display: flex;
+    flex-direction: row;
+}
+
+.scheduler-cells {
+    display: flex;
+    flex-direction: column;
+}
+
+.scheduler-timecolumn {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.scheduler-hour {
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+
+    font-size: 18px;
+}
+
+.scheduler-intervals {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    font-size: 14px;
+}
+
+.scheduler-minutes {
+    padding-left: 10px;
+    height: 25px;
+    position: relative;
+    
+}
+
+.scheduler-avatar-list {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+}
+
+.scheduler-avatar {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+    
+    height: 150px;
+    width: 150px;
+    padding: 10px;
+}
+
+.scheduler-avatar img {
+    border-radius: 50%;
+}
+
+.scheduler-table-cell {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    height: 30px;
+    width: 250px;
+}
+
+.underlined {
+    border-bottom: 2px solid grey;
+}
+
+.scheduler-booking {
+    width: 100%;
+    height: 100%;
+    background-color: darkorange;
+}
