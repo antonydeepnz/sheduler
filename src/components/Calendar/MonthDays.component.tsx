@@ -12,7 +12,7 @@ interface IMonthDaysProps {
     month: number,
     year: number,
     selected?: boolean,
-    monthChange?: Function,
+    setMonth: Function,
     setSelected?: Function
 }
 
@@ -20,7 +20,7 @@ const DaysWrapper = styled.div`
     display: flex;
     flex-wrap: wrap;    
 `
-//DayWrapper оберунть DayOfWeek чтобы не повторяться
+
 const DayOfWeek = styled(DayBasic)`
     font-weight: 500; 
     margin-top: 10px;
@@ -32,9 +32,13 @@ const DayOfWeek = styled(DayBasic)`
     } 
 `
 
-const MonthDays: React.FC<IMonthDaysProps> = ({ month, year, selected, monthChange, setSelected }) => {
+const DayInactive = styled(Day)`
+    color: red;
+`
 
-//   const week = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+const MonthDays: React.FC<IMonthDaysProps> = ({ 
+  month, year, selected, setMonth, setSelected 
+}) => {
 
   const today = new Date();
   const daysInMonth = new Date(year, (month+1), 0).getDate();
@@ -79,20 +83,21 @@ const MonthDays: React.FC<IMonthDaysProps> = ({ month, year, selected, monthChan
     return daysOfMonth;
   }
 
-//   const handleDayClick = ({ thisMonth, day }) => {
-//     if(thisMonth){
-//       setSelected(dateFormat(new Date(year,month,day)))
-//     }
-//     else 
-//       if(day < 7){
-//         monthChange({month: month + 1, year: year})
-//         setSelected(dateFormat(new Date(year,month+1,day)))
-//     } else
-//       if(day > 24){
-//         monthChange({month: month - 1, year: year})
-//         setSelected(dateFormat(new Date(year,month-1,day)))
-//     }
-//   }
+  const handleDayClick = ( thisMonth: boolean, day: number ) => {
+    if(thisMonth){
+      //setSelected(dateFormat(new Date(year,month,day)))
+      console.log('this Month')
+    }
+    else 
+      if(day < 8){
+        setMonth( month + 1 )
+        //setSelected(dateFormat(new Date(year,month+1,day)))
+    } else
+      if(day > 23){
+        setMonth( month - 1 )
+        //setSelected(dateFormat(new Date(year,month-1,day)))
+    }
+  }
   
   return(
     <DaysWrapper>
@@ -104,29 +109,25 @@ const MonthDays: React.FC<IMonthDaysProps> = ({ month, year, selected, monthChan
         }
         {
           daysToRender(daysInMonth,month).map(( item, index ) => {
-            // if (item.thisMonth){
-            //   return (dateFormat(new Date(year,month,item.day)) === selected)
-            //     ? <Day key={`${item.day}-${index}`} 
-            //             day={item.day}
-            //             />
-            //     : <Day key={`${item.day}-${index}`}  
-            //             day={item.day}
-            //             />      
-            // } else {
-            //   return <Day key={`${item.day}-${index}`}
-            //               day={item.day}
-                        
-            //             />
-            // }
-            return <Day key={`${item.day}-${index}`}
-                          day={item.day}
-                        
+            if (item.thisMonth){
+              return <Day key={`${item.day}-${index}`}  
+                  day={item.day}
+                  clickAction={() => handleDayClick(item.thisMonth, item.day)}
+                  />      
+            } else {
+              return <DayInactive key={`${item.day}-${index}`}
+                        day={item.day}
+                        clickAction={() => handleDayClick(item.thisMonth, item.day)}
                         />
+            }
+            // return <Day key={`${item.day}-${index}`}
+            //               day={item.day}
+            //             />
           })
         }
     </DaysWrapper>
   );
-}//clickAction={() => handleDayClick(item)}
+}
 
 
 export default MonthDays

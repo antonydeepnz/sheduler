@@ -7,18 +7,29 @@ interface ISelectBtnProps {
 }
 
 const Button = styled.span`
+    margin: 5px;
+    padding: 5px;
+    font-weight: 500;
 
+    &:hover{
+        font-weight: 700;
+    }
 `
 
-// const SelectBtn: React.FC<ISelectBtnProps> = ({ 
-//     title, action 
-// }) => {
-//     return(
-//       <Button className="change-btn"
-//         onClick={action}>
-//         {title}
-//       </Button>
-//     );
-// }
+const SelectBtn: React.FC<ISelectBtnProps> = ({ 
+   title, action 
+}) => {
 
-// export default SelectBtn
+    const handleClick = ( ) => {
+        action()
+    }
+
+    return(
+      <Button className="change-btn"
+        onClick={handleClick}>
+        {title}
+      </Button>
+    );
+}
+
+export default SelectBtn

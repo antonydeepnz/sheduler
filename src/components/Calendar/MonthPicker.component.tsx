@@ -29,7 +29,6 @@ const MonthSelected = styled(Month)`
     font-weight: 700;
 `
 // color: ${props => props.selected? '#171717' : '#868686'};
-
 interface IMonthPickerProps {
     month: number,
     setMonth: Function

@@ -3,7 +3,7 @@ import styled from "styled-components"
 
 interface IDayProps {
     day: number,
-    clickAction?: Function,
+    clickAction: Function,
 }
 
 export const DayBasic = styled.span`
@@ -26,7 +26,7 @@ const Day: React.FC<IDayProps> = ({
 }) => {
   
   const handleClick = () => {
-    console.log('dsfdsf')
+    clickAction()
   }
   
   return(
