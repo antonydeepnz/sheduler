@@ -1,10 +1,19 @@
 import React from 'react'
-import styled from "styled-components"
+import styled, { keyframes } from "styled-components"
 
 interface ITableCellProps {
     color: string,
     height: number
 }
+
+const rotate = keyframes`
+0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+`
 
 const TableCell = styled.td<ITableCellProps>`
     color: ${props => props.color};
@@ -12,9 +21,10 @@ const TableCell = styled.td<ITableCellProps>`
     padding: 5px;
     width: 150px;
     height: ${props => props.height}px;
-
+    
     &:hover {
         color: blue;
+        animation: ${rotate} 0.3s linear;
     }
 `
 

@@ -2,6 +2,8 @@ import React from 'react';
 import _ from 'lodash'
 import './App.css'
 
+import Calendar from './components/Calendar/Calendar.component'
+
 import SchedulerBoard from './components/ScheduleBoard/SchedulerBoard.component'
 import { avatar} from './utils/db'
 
@@ -26,10 +28,12 @@ const a = Math.max(...avatar.map(elt => elt.workingHours.end))
 console.log(a)
 
 const App: React.FC = () => {
+
   return (
     <div className="App">
+      <Calendar />
       {/* <SchedulerBoard hours={hours} intervals={intervals} avatars={avatars}/> */}
-      <table>
+      {/* <table>
         <tbody>
           <tr>
           {
@@ -39,7 +43,7 @@ const App: React.FC = () => {
           }
           </tr>
         </tbody>
-      </table>
+      </table> */}
     </div>
   );
 }
