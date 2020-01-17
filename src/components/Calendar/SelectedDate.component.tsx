@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from "styled-components"
 
-const TodayWrapper = styled.div`
+const SelectedDateWrapper = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -23,15 +23,15 @@ interface ITodayProps {
     dayLiteral?: string
 }
 
-const Today: React.FC<ITodayProps> = ({
+const SelectedDate: React.FC<ITodayProps> = ({
     day, dayLiteral
 }) => {
     return (
-        <TodayWrapper>
+        <SelectedDateWrapper>
             <Day>26</Day>
             <DayLiteral>Thuesday</DayLiteral>
-        </TodayWrapper>
+        </SelectedDateWrapper>
     )
 }
 
-export default Today
+export default SelectedDate

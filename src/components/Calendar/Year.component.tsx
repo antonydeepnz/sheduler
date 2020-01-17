@@ -5,7 +5,7 @@ import SelectBtn from './SelectBtn.component'
 
 interface IYearProps {
     year: number,
-    yearChange: Function
+    setYear: Function
 }
 
 const YearWrapper = styled.div`
@@ -21,15 +21,15 @@ const YearText = styled.p`
 `
 
 const Year: React.FC<IYearProps> = ({
-    year, yearChange 
+    year, setYear 
 }) => {
 
     const prevYear = () => {
-        yearChange(year - 1)
+        setYear(year - 1)
     }
 
     const nextYear = () => {
-        yearChange(year + 1)
+        setYear(year + 1)
     }
   
     return(

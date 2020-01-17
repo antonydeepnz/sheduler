@@ -9,6 +9,8 @@ import { avatar} from './utils/db'
 
 import TableCell from './components/ScheduleBoard/ScheduleTable/TableCell.component'
 
+import { Drag, Drop } from './drag'
+
 const intervals = _.range(0,60,15)
 const hours = _.range(10,20)
 
@@ -31,7 +33,10 @@ const App: React.FC = () => {
 
   return (
     <div className="App">
-      <Calendar />
+      {/* <Calendar showSelected/> */}
+      <Drag />
+      <Drop />
+      <Drop />
       {/* <SchedulerBoard hours={hours} intervals={intervals} avatars={avatars}/> */}
       {/* <table>
         <tbody>

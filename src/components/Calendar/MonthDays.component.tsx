@@ -13,7 +13,7 @@ interface IMonthDaysProps {
     year: number,
     selected?: boolean,
     setMonth: Function,
-    setSelected?: Function
+    setYear: Function
 }
 
 const DaysWrapper = styled.div`
@@ -37,7 +37,7 @@ const DayInactive = styled(Day)`
 `
 
 const MonthDays: React.FC<IMonthDaysProps> = ({ 
-  month, year, selected, setMonth, setSelected 
+  month, year, selected, setMonth, setYear 
 }) => {
 
   const today = new Date();
@@ -83,6 +83,11 @@ const MonthDays: React.FC<IMonthDaysProps> = ({
     return daysOfMonth;
   }
 
+  const setYearMonth = (month: number, year: number ) => {
+    setMonth( month )
+    setYear( year )
+  }
+
   const handleDayClick = ( thisMonth: boolean, day: number ) => {
     if(thisMonth){
       //setSelected(dateFormat(new Date(year,month,day)))
@@ -90,11 +95,15 @@ const MonthDays: React.FC<IMonthDaysProps> = ({
     }
     else 
       if(day < 8){
-        setMonth( month + 1 )
+        month === 11
+          ? setYearMonth( 0, year + 1)
+          : setMonth( month + 1 )
         //setSelected(dateFormat(new Date(year,month+1,day)))
     } else
       if(day > 23){
-        setMonth( month - 1 )
+        month === 0
+        ? setYearMonth( 11, year - 1)
+        : setMonth( month - 1 )
         //setSelected(dateFormat(new Date(year,month-1,day)))
     }
   }

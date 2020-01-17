@@ -2,12 +2,13 @@ import React, { useState } from 'react'
 import styled from "styled-components"
 
 import MonthPicker from './MonthPicker.component'
-import Today from './Today.component'
+import SelectedDate from './SelectedDate.component'
 import MonthDays from './MonthDays.component'
 import Year from './Year.component'
 
 interface ICalendarProps {
-    lang?: string
+    lang?: string, 
+    showSelected?: boolean
 }
 
 const CalendarWrapper = styled.div`
@@ -25,7 +26,7 @@ const Container = styled.div`
 `
 
 const Calendar: React.FC<ICalendarProps> = ({
-    lang
+    lang, showSelected
 }) => {
 
     const [ month, setMonth ] = useState(new Date().getMonth())
@@ -41,10 +42,12 @@ const Calendar: React.FC<ICalendarProps> = ({
 
     return (
         <CalendarWrapper>
-            <Today />
+            {
+                showSelected && <SelectedDate />
+            }
             <Container>
                 <Year year={year} 
-                    yearChange={handleYearChange}
+                    setYear={handleYearChange}
                     />
                 <MonthPicker month={month} 
                     setMonth={handleMonthChange}
@@ -53,6 +56,7 @@ const Calendar: React.FC<ICalendarProps> = ({
             <MonthDays month={month} 
                 year={year}
                 setMonth={handleMonthChange}
+                setYear={handleYearChange}
                 />
         </CalendarWrapper>
     )
